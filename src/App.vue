@@ -7,16 +7,20 @@ export default {
     draggable,
   },
   setup() {
-    const cards = ref([{ id: 0, title: '' }]);
-    let id = 1;
+    const cards = ref([{ id: Date.now(), title: '' }]);
+    const cards1 = ref([{}]);
+    const cards2 = ref([{}]);
+    // let id = Date.now();
 
     const createCard = () => {
-      cards.value.push({ id: id++, title: `Card ${id}` });
+      cards.value.push({ id: Date.now(), title: `` });
     }
 
     return {
+      createCard,
       cards,
-      createCard
+      cards1,
+      cards2
     }
   }
 }
@@ -28,21 +32,34 @@ export default {
       <div class="create_card" @click="createCard">+</div>
       <draggable
           class="cards"
-          v-model="cards"
-          group="people"
+          :list="cards"
+          group="task"
           @start="drag=true"
           @end="drag=false"
           item-key="id">
         <template #item="{ element }">
           <div class="card">
-            {{ element.title }}
+            {{ element.id }}
           </div>
         </template>
       </draggable>
     </div>
-    <div class="card_area"></div>
-    <div class="card_area"></div>
-    <div class="card_area"></div>
+    <div class="card_area">Start
+      <draggable
+
+          :list="cards1"
+          group="task"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="id">
+        <template #item="{ element }">
+          <div>
+          </div>
+        </template>
+      </draggable>
+    </div>
+    <div class="card_area" draggable="true">In progress</div>
+    <div class="card_area">Done</div>
   </div>
 </template>
 
