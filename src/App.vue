@@ -7,20 +7,25 @@ export default {
     draggable,
   },
   setup() {
-    const cards = ref([{ id: Date.now(), title: '' }]);
-    const cards1 = ref([{}]);
-    const cards2 = ref([{}]);
-    // let id = Date.now();
+    const cards = ref([]);
+    const cards1 = ref([]);
+    const cards2 = ref([]);
+    const cards3 = ref([]);
+
+    let title = ref('')
 
     const createCard = () => {
-      cards.value.push({ id: Date.now(), title: `` });
+      cards.value.push({ id: Date.now(), title: '' });
     }
+
 
     return {
       createCard,
       cards,
       cards1,
-      cards2
+      cards2,
+      cards3,
+      title
     }
   }
 }
@@ -31,35 +36,72 @@ export default {
     <div class="start-area">
       <div class="create_card" @click="createCard">+</div>
       <draggable
+
+          :title="title"
           class="cards"
           :list="cards"
           group="task"
           @start="drag=true"
           @end="drag=false"
           item-key="id">
-        <template #item="{ element }">
+        <template #item="{ card }">
           <div class="card">
-            {{ element.id }}
+            {{ card }}
           </div>
         </template>
       </draggable>
     </div>
-    <div class="card_area">Start
-      <draggable
 
+    <div class="card_area">
+      <h4>Start</h4>
+      <draggable
+          class="cards"
           :list="cards1"
           group="task"
           @start="drag=true"
           @end="drag=false"
           item-key="id">
-        <template #item="{ element }">
-          <div>
+        <template #item="{ card }">
+          <div class="card">
+            {{ card }}
           </div>
         </template>
       </draggable>
     </div>
-    <div class="card_area" draggable="true">In progress</div>
-    <div class="card_area">Done</div>
+
+    <div class="card_area">
+      <h4>In progress</h4>
+      <draggable
+          class="cards"
+          :list="cards2"
+          group="task"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="id">
+        <template #item="{ card }">
+          <div class="card">
+            {{ card }}
+          </div>
+        </template>
+      </draggable>
+    </div>
+
+    <div class="card_area">
+      <h4>Done</h4>
+      <draggable
+          class="cards"
+          :list="cards3"
+          group="task"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="id">
+        <template #item="{ card }">
+          <div class="card">
+            {{ card }}
+          </div>
+        </template>
+      </draggable>
+    </div>
   </div>
 </template>
 
@@ -80,6 +122,7 @@ export default {
 }
 .create_card {
   display: flex;
+  margin: 2px 2px;
   width: 40px;
   height: 40px;
   background-color: lightseagreen;
@@ -92,16 +135,21 @@ export default {
 .cards {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+h4 {
+  margin: 13px;
 }
 .card {
   width: 99%;
   height:70px;
-  background-color: #2c3e50;
-  color: white;
-  margin: 5px 0;
+  margin: 3px 3px;
+  padding: 0;
   display: flex;
+  color: #181818;
   align-items: center;
   justify-content: center;
+  border: 1px solid lightgreen;
   border-radius: 4px;
 }
 </style>
