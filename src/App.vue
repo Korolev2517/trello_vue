@@ -12,12 +12,13 @@ export default {
     const cards2 = ref([]);
     const cards3 = ref([]);
 
-    let title = ref('')
-
     const createCard = () => {
       cards.value.push({ id: Date.now(), title: '' });
-    }
+    };
 
+    const updateCardTitle = (card, newTitle) => {
+      card.title = newTitle;
+    };
 
     return {
       createCard,
@@ -25,10 +26,10 @@ export default {
       cards1,
       cards2,
       cards3,
-      title
-    }
-  }
-}
+      updateCardTitle
+    };
+  },
+};
 </script>
 
 <template>
@@ -36,17 +37,20 @@ export default {
     <div class="start-area">
       <div class="create_card" @click="createCard">+</div>
       <draggable
-
-          :title="title"
           class="cards"
           :list="cards"
           group="task"
           @start="drag=true"
           @end="drag=false"
           item-key="id">
-        <template #item="{ card }">
+        <template #item="{ element: card }">
           <div class="card">
-            {{ card }}
+            <input
+                type="text"
+                v-model="card.title"
+                placeholder="Enter text"
+                @input="updateCardTitle(card, card.title)"
+            />
           </div>
         </template>
       </draggable>
@@ -61,9 +65,14 @@ export default {
           @start="drag=true"
           @end="drag=false"
           item-key="id">
-        <template #item="{ card }">
+        <template #item="{ element: card }">
           <div class="card">
-            {{ card }}
+            <input
+                type="text"
+                v-model="card.title"
+                placeholder="Enter text"
+                @input="updateCardTitle(card, card.title)"
+            />
           </div>
         </template>
       </draggable>
@@ -78,9 +87,14 @@ export default {
           @start="drag=true"
           @end="drag=false"
           item-key="id">
-        <template #item="{ card }">
+        <template #item="{ element: card }">
           <div class="card">
-            {{ card }}
+            <input
+                type="text"
+                v-model="card.title"
+                placeholder="Enter text"
+                @input="updateCardTitle(card, card.title)"
+            />
           </div>
         </template>
       </draggable>
@@ -95,9 +109,14 @@ export default {
           @start="drag=true"
           @end="drag=false"
           item-key="id">
-        <template #item="{ card }">
+        <template #item="{ element: card }">
           <div class="card">
-            {{ card }}
+            <input
+                type="text"
+                v-model="card.title"
+                placeholder="Enter text"
+                @input="updateCardTitle(card, card.title)"
+            />
           </div>
         </template>
       </draggable>
@@ -131,6 +150,7 @@ export default {
   justify-content: center;
   font-weight: bold;
   font-size: 20px;
+  cursor: pointer;
 }
 .cards {
   display: flex;
@@ -142,7 +162,7 @@ h4 {
 }
 .card {
   width: 99%;
-  height:70px;
+  height: 70px;
   margin: 3px 3px;
   padding: 0;
   display: flex;
@@ -151,5 +171,14 @@ h4 {
   justify-content: center;
   border: 1px solid lightgreen;
   border-radius: 4px;
+}
+.card input {
+  width: 90%;
+  height: 30px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 4px;
+  outline: none;
 }
 </style>
