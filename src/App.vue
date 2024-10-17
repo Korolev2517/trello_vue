@@ -57,7 +57,9 @@ export default {
     </div>
 
     <div class="card_area">
-      <h4>Start</h4>
+      <div class="title">
+        <h4>Start</h4>
+      </div>
       <draggable
           class="cards"
           :list="cards1"
@@ -79,7 +81,9 @@ export default {
     </div>
 
     <div class="card_area">
-      <h4>In progress</h4>
+      <div class="title">
+        <h4>In progress</h4>
+      </div>
       <draggable
           class="cards"
           :list="cards2"
@@ -101,7 +105,9 @@ export default {
     </div>
 
     <div class="card_area">
-      <h4>Done</h4>
+      <div class="title">
+        <h4>Done</h4>
+      </div>
       <draggable
           class="cards"
           :list="cards3"
@@ -128,20 +134,27 @@ export default {
 .container {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 10px;
 }
+
 .start-area,
 .card_area {
-  margin: 1px;
+  display: flex;
+  margin-right: 1px;
+  flex-direction: column;
+  box-sizing: border-box;
   width: 25vw;
-  height: 100%;
+  min-height: 100vh;
   border-radius: 7px;
   background-color: #f1eff2;
   text-align: center;
 }
+
 .create_card {
   display: flex;
-  margin: 2px 2px;
+  margin: 10px;
   width: 40px;
   height: 40px;
   background-color: lightseagreen;
@@ -152,18 +165,31 @@ export default {
   font-size: 20px;
   cursor: pointer;
 }
+
 .cards {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-grow: 1;
+  padding: 10px;
 }
+
+.title {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+}
+
 h4 {
-  margin: 13px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
 }
+
 .card {
-  width: 99%;
+  width: 100%;
   height: 70px;
-  margin: 3px 3px;
+  margin: 10px 0;
   padding: 0;
   display: flex;
   color: #181818;
@@ -172,13 +198,15 @@ h4 {
   border: 1px solid lightgreen;
   border-radius: 4px;
 }
+
 .card input {
   width: 90%;
   height: 30px;
   border: none;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 4px;
   outline: none;
 }
+
 </style>
