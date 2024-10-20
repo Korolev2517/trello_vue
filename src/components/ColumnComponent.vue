@@ -76,7 +76,6 @@ h4 {
   justify-content: flex-start;
   width: 100%;
   min-height: 400px;
-
   box-sizing: border-box;
 }
 

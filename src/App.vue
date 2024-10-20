@@ -1,6 +1,7 @@
 <script>
 import ColumnComponent from 'components/ColumnComponent.vue';
 import CardComponent from 'components/CardComponent.vue';
+import ModalComp from "components/ModalComp.vue";
 import draggable from "vuedraggable";
 import { ref } from 'vue';
 
@@ -8,6 +9,7 @@ export default {
   components: {
     ColumnComponent,
     CardComponent,
+    ModalComp,
     draggable
   },
   setup() {
@@ -15,6 +17,7 @@ export default {
     const cards1 = ref([]);
     const cards2 = ref([]);
     const cards3 = ref([]);
+    const showModal = ref(false)
 
     const createCard = () => {
       cards.value.push({ id: Date.now(), title: '' });
@@ -31,6 +34,7 @@ export default {
       cards2,
       cards3,
       updateCardTitle,
+      showModal
     };
   },
 };
@@ -40,6 +44,14 @@ export default {
   <div class="container">
     <div class="start-area">
       <div class="create_card" @click="createCard">+</div>
+      <div class="show_modal" @click="showModal = true">Show</div>
+      <Teleport to="body">
+        <ModalComp :show="showModal" @close="showModal = false">
+          <template #header>
+            <h3>какой то заголовок</h3>
+          </template>
+        </ModalComp>
+      </Teleport>
       <draggable
           class="cards"
           :list="cards"
@@ -105,4 +117,9 @@ export default {
   cursor: pointer;
 }
 
+.show_modal {
+  width: 100px;
+  height: 30px;
+  background-color: lightgreen;
+}
 </style>
