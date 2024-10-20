@@ -1,10 +1,14 @@
 <script>
+import ColumnComponent from 'components/ColumnComponent.vue';
+import CardComponent from 'components/CardComponent.vue';
 import draggable from "vuedraggable";
-import { ref } from "vue";
+import { ref } from 'vue';
 
 export default {
   components: {
-    draggable,
+    ColumnComponent,
+    CardComponent,
+    draggable
   },
   setup() {
     const cards = ref([]);
@@ -26,7 +30,7 @@ export default {
       cards1,
       cards2,
       cards3,
-      updateCardTitle
+      updateCardTitle,
     };
   },
 };
@@ -40,93 +44,31 @@ export default {
           class="cards"
           :list="cards"
           group="task"
-          @start="drag=true"
-          @end="drag=false"
-          item-key="id">
+          @start="drag = true"
+          @end="drag = false"
+          item-key="id"
+      >
         <template #item="{ element: card }">
-          <div class="card">
-            <input
-                type="text"
-                v-model="card.title"
-                placeholder="Enter text"
-                @input="updateCardTitle(card, card.title)"
-            />
-          </div>
+          <CardComponent :card="card" @update-title="updateCardTitle" />
         </template>
       </draggable>
     </div>
 
-    <div class="card_area">
-      <div class="title">
-        <h4>Start</h4>
-      </div>
-      <draggable
-          class="cards"
-          :list="cards1"
-          group="task"
-          @start="drag=true"
-          @end="drag=false"
-          item-key="id">
-        <template #item="{ element: card }">
-          <div class="card">
-            <input
-                type="text"
-                v-model="card.title"
-                placeholder="Enter text"
-                @input="updateCardTitle(card, card.title)"
-            />
-          </div>
-        </template>
-      </draggable>
-    </div>
-
-    <div class="card_area">
-      <div class="title">
-        <h4>In progress</h4>
-      </div>
-      <draggable
-          class="cards"
-          :list="cards2"
-          group="task"
-          @start="drag=true"
-          @end="drag=false"
-          item-key="id">
-        <template #item="{ element: card }">
-          <div class="card">
-            <input
-                type="text"
-                v-model="card.title"
-                placeholder="Enter text"
-                @input="updateCardTitle(card, card.title)"
-            />
-          </div>
-        </template>
-      </draggable>
-    </div>
-
-    <div class="card_area">
-      <div class="title">
-        <h4>Done</h4>
-      </div>
-      <draggable
-          class="cards"
-          :list="cards3"
-          group="task"
-          @start="drag=true"
-          @end="drag=false"
-          item-key="id">
-        <template #item="{ element: card }">
-          <div class="card">
-            <input
-                type="text"
-                v-model="card.title"
-                placeholder="Enter text"
-                @input="updateCardTitle(card, card.title)"
-            />
-          </div>
-        </template>
-      </draggable>
-    </div>
+    <ColumnComponent
+        title="Start"
+        :cards="cards1"
+        @update-title="updateCardTitle"
+    />
+    <ColumnComponent
+        title="In Progress"
+        :cards="cards2"
+        @update-title="updateCardTitle"
+    />
+    <ColumnComponent
+        title="Done"
+        :cards="cards3"
+        @update-title="updateCardTitle"
+    />
   </div>
 </template>
 
@@ -139,17 +81,14 @@ export default {
   padding: 10px;
 }
 
-.start-area,
-.card_area {
+.start-area {
   display: flex;
-  margin-right: 1px;
   flex-direction: column;
-  box-sizing: border-box;
+  margin-right: 1px;
   width: 25vw;
   min-height: 100vh;
   border-radius: 7px;
   background-color: #f1eff2;
-  text-align: center;
 }
 
 .create_card {
@@ -164,49 +103,6 @@ export default {
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
-}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 10px;
-}
-
-.title {
-  display: flex;
-  width: 100%;
-  height: 60px;
-  text-align: center;
-}
-
-h4 {
-  display: flex;
-  margin: 0 auto;
-  align-items: center;
-}
-
-.card {
-  width: 100%;
-  height: 70px;
-  margin: 10px 0;
-  padding: 0;
-  display: flex;
-  color: #181818;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid lightgreen;
-  border-radius: 4px;
-}
-
-.card input {
-  width: 90%;
-  height: 30px;
-  border: none;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 4px;
-  outline: none;
 }
 
 </style>
