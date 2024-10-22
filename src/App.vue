@@ -20,7 +20,17 @@ export default {
     const showModal = ref(false)
 
     const createCard = () => {
-      cards.value.push({ id: Date.now(), title: '' });
+      showModal.value = true;
+    };
+
+    const addCard = (cardData) => {
+      cards.value.push({
+        id: Date.now(),
+        title: cardData.title,
+        text: cardData.cardText,
+        note: cardData.note
+      });
+      showModal.value = false;
     };
 
     const updateCardTitle = (card, newTitle) => {
@@ -34,7 +44,8 @@ export default {
       cards2,
       cards3,
       updateCardTitle,
-      showModal
+      showModal,
+      addCard
     };
   },
 };
@@ -44,12 +55,8 @@ export default {
   <div class="container">
     <div class="start-area">
       <div class="create_card" @click="createCard">+</div>
-      <div class="show_modal" @click="showModal = true">Show</div>
       <Teleport to="body">
-        <ModalComp :show="showModal" @close="showModal = false">
-          <template #header>
-            <h3>какой то заголовок</h3>
-          </template>
+        <ModalComp :show="showModal" @close="showModal = false" @save="addCard">
         </ModalComp>
       </Teleport>
       <draggable
@@ -83,6 +90,7 @@ export default {
     />
   </div>
 </template>
+
 
 <style scoped>
 .container {

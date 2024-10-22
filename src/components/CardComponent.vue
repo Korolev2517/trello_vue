@@ -14,33 +14,50 @@ export default {
 <template>
   <div class="card_container">
     <div class="card">
-    <textarea
-        type="text"
-        v-model="card.title"
-        placeholder="Enter text"
-        @input="updateCardTitle(card, card.title)"
-    />
+      <div class="card-content">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.text }}</p>
+        <small>{{ card.note }}</small>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .card_container {
-  display: flex;
-  justify-content: center;
-  margin: 3px 4px;
+  margin: 0 4px;
+  width: 100%;
 }
 
 .card {
-  width: 100%;
-  height: 70px;
-  margin: 0;
-  padding: 0;
   display: flex;
-  color: #181818;
-  align-items: center;
-  justify-content: center;
+  margin: 2px 4px;
+  width: 85%;
+  padding: 10px;
+  background-color: #fff;
   border: 1px solid lightgreen;
   border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: #181818;
+  word-wrap: break-word;
+}
+
+.card-content p {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+.card-content small {
+  font-size: 12px;
+  color: gray;
+  word-wrap: break-word;
 }
 </style>
