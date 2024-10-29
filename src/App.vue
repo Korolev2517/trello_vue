@@ -124,10 +124,4 @@ export default {
   font-size: 20px;
   cursor: pointer;
 }
-
-.show_modal {
-  width: 100px;
-  height: 30px;
-  background-color: lightgreen;
-}
 </style>

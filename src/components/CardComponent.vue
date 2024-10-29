@@ -14,6 +14,7 @@ export default {
 <template>
   <div class="card_container">
     <div class="card">
+      <img src="../assets/img/edit.png" class="img" alt="#">
       <div class="card-content">
         <h3>{{ card.title }}</h3>
         <p>{{ card.text }}</p>
@@ -43,10 +44,13 @@ export default {
 }
 
 .card-content h3 {
+  display: flex;
+  width: 80%;
   margin: 0 0 4px 0;
   font-size: 16px;
   color: #181818;
   word-wrap: break-word;
+
 }
 
 .card-content p {
@@ -60,4 +64,12 @@ export default {
   color: gray;
   word-wrap: break-word;
 }
+
+.img {
+  position: relative;
+  right: -180px;
+  width: 20px;
+  height: 20px;
+}
+
 </style>
