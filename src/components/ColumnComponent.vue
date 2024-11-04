@@ -36,13 +36,15 @@ export default {
         <template #item="{ element: card }">
           <CardComponent
               :card="card"
-              @update-title="updateCardTitle"
+              @update-card="$emit('update-card', card)"
           />
         </template>
       </draggable>
     </div>
   </div>
 </template>
+
+
 
 <style scoped>
 .card_area {

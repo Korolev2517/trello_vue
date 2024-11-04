@@ -9,6 +9,7 @@ export default {
       editableCard: { ...this.card },
     };
   },
+
   methods: {
     openEditModal() {
       this.editableCard = { ...this.card };
@@ -22,6 +23,8 @@ export default {
       this.closeEditModal();
     },
   },
+
+
 };
 </script>
 
@@ -71,11 +74,13 @@ export default {
   flex-direction: column;
   margin: 2px 4px;
   width: 85%;
+  min-height: 60px;
   padding: 10px;
   background-color: #fff;
   border: 1px solid lightgreen;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .card-header {
@@ -89,9 +94,11 @@ export default {
 .card-header h3 {
   font-size: 16px;
   color: #181818;
-  word-wrap: break-word;
   margin: 0;
   padding-right: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .edit-icon {
@@ -105,19 +112,21 @@ export default {
   align-items: center;
   justify-content: center;
 }
+  .card-content p {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-.card-content p {
-  margin: 0 0 4px 0;
-  font-size: 14px;
-  word-wrap: break-word;
-}
-
-.card-content small {
-  font-size: 12px;
-  color: gray;
-  word-wrap: break-word;
-}
-
+  .card-content small {
+    font-size: 12px;
+    color: gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
 .modal-overlay {
   display: flex;

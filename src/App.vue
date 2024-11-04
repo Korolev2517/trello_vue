@@ -37,6 +37,17 @@ export default {
       card.title = newTitle;
     };
 
+    const handleCardUpdate = (updatedCard) => {
+      const columns = [cards, cards1, cards2, cards3];
+      for (const column of columns) {
+        const cardIndex = column.value.findIndex((card) => card.id === updatedCard.id);
+        if (cardIndex !== -1) {
+          column.value[cardIndex] = { ...updatedCard };
+          break;
+        }
+      }
+    };
+
     return {
       createCard,
       cards,
@@ -45,7 +56,8 @@ export default {
       cards3,
       updateCardTitle,
       showModal,
-      addCard
+      addCard,
+      handleCardUpdate,
     };
   },
 };
@@ -68,7 +80,10 @@ export default {
           item-key="id"
       >
         <template #item="{ element: card }">
-          <CardComponent :card="card" @update-title="updateCardTitle" />
+          <CardComponent
+              :card="card"
+              @update-card="handleCardUpdate"
+          />
         </template>
       </draggable>
     </div>
@@ -76,21 +91,20 @@ export default {
     <ColumnComponent
         title="Start"
         :cards="cards1"
-        @update-title="updateCardTitle"
+        @update-card="handleCardUpdate"
     />
     <ColumnComponent
         title="In Progress"
         :cards="cards2"
-        @update-title="updateCardTitle"
+        @update-card="handleCardUpdate"
     />
     <ColumnComponent
         title="Done"
         :cards="cards3"
-        @update-title="updateCardTitle"
+        @update-card="handleCardUpdate"
     />
   </div>
 </template>
-
 
 <style scoped>
 .container {
