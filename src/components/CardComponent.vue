@@ -95,12 +95,15 @@ export default {
 }
 
 .edit-icon {
+  display: flex;
   position: absolute;
   top: 0;
   right: 0;
   width: 20px;
   height: 20px;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-content p {
@@ -117,25 +120,26 @@ export default {
 
 
 .modal-overlay {
+  display: flex;
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.7);
-  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
 .modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
   display: flex;
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .modal-content h3 {
@@ -148,7 +152,8 @@ export default {
 
 .modal-content input,
 .modal-content textarea {
-  width: 100%;
+  display: flex;
+  width: 284px;
   margin-top: 5px;
   margin-bottom: 15px;
   padding: 8px;
@@ -162,16 +167,6 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.modal-content button:nth-child(1) {
-  background-color: lightgreen;
-  color: #fff;
-}
-
-.modal-content button:nth-child(2) {
-  background-color: lightcoral;
-  color: #fff;
 }
 </style>
 

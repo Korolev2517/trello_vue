@@ -39,9 +39,9 @@ export default {
         <div class="modal_footer">
           <label for="note">Примечание:</label>
           <input v-model="note" id="note" type="text" placeholder="Введите примечание" />
-          <button class="modal_btn" @click="handleSubmit">Сохранить</button>
-          <button class="modal_btn" @click="$emit('close')">Отмена</button>
         </div>
+        <button class="modal_btn" @click="handleSubmit">Сохранить</button>
+        <button class="modal_btn" @click="$emit('close')">Отмена</button>
       </div>
     </div>
   </Transition>
@@ -49,36 +49,31 @@ export default {
 
 <style scoped>
 .modal_mask {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
-  position: fixed;
-  z-index: 9998;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .modal_container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
   width: 300px;
-  margin: auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal_header,
 .modal_body,
 .modal_footer {
   margin: 10px 0;
-}
-
-.modal_btn {
-  float: right;
-  margin-left: 10px;
 }
 
 input,
@@ -92,6 +87,19 @@ textarea {
 }
 
 textarea {
+  height: 70px;
   resize: none;
 }
+
+.modal_btn {
+  display: flex;
+  margin-top: 10px;
+  padding: 8px;
+  width: 300px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-content: center;
+}
+
 </style>
